@@ -1,6 +1,6 @@
-# Konfiguracja — Dynamic Weather Background 1.7.1
+# Konfiguracja — Dynamic Weather Background 1.0.0
 
-Wartości poniżej odpowiadają oryginalnemu kodowi v1.7.1. Kartę można skonfigurować również wizualnie w interfejsie Home Assistant.
+Wartości poniżej odpowiadają oryginalnemu kodowi v1.0.0. Kartę można skonfigurować również wizualnie w interfejsie Home Assistant.
 
 ## Źródła danych i zachowanie
 
@@ -64,4 +64,4 @@ Do zwykłej pracy użyj `preview_weather: off` i `preview_time: auto`. Edytor ud
 
 W edytorze karty rozwiń **Diagnostyka na żywo**. Wyświetlane są m.in. źródło danych, pogoda, scena, pora dnia, zachmurzenie i położenie Słońca.
 
-Nie używaj przestarzałych pól `target_path`, `target_paths` ani `glass_tint`: v1.7.1 usuwa je podczas normalizacji konfiguracji. Wtyczka działa na widok, w którym jest umieszczona.
+Nie używaj przestarzałych pól `target_path`, `target_paths` ani `glass_tint`: v1.0.0 usuwa je podczas normalizacji konfiguracji. Wtyczka działa na widok, w którym jest umieszczona.
