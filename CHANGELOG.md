@@ -1,8 +1,11 @@
 # Changelog
 
-## 1.7.1 — initial repository import (2026-11-18)
+## 1.0.0 — pierwsze stabilne wydanie (2026-11-18)
 
-- Import oryginalnego modułu Dynamic Weather Background v1.7.1 z działającej instancji Home Assistant.
-- Dokumentacja konfiguracji, instalacji, migracji i przykładowy YAML.
-- Dodanie manifestu HACS/Marketplace i licencji.
-- Bez zmian w oryginalnym kodzie modułu JavaScript.
+- Pierwsza stabilna wersja Dynamic Weather Background, zbudowana na kodzie sprawdzonym w Home Assistant.
+- Pełny silnik animacji pogody, edytor wizualny, diagnostyka i efekty wyglądu kart.
+- Dokumentacja konfiguracji, instalacji, migracji i przykład YAML.
+- Manifest HACS / Marketplace i licencja MIT.
+- Zmiana oznaczenia wersji wcześniejszego kodu rozwojowego na 1.0.0; bez zmian funkcjonalnych.
+
+Wcześniejsze wersje (w tym wewnętrzna 1.7.1) były iteracjami rozwojowymi/alpha/beta i nie stanowią stabilnych wydań.
