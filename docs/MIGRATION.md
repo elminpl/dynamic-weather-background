@@ -11,4 +11,4 @@ Ta instalacja została odtworzona z istniejącego modułu inline w zasobach Love
 
 **Powrót:** usuń nowy zasób, przywróć oryginalny inline i odśwież przeglądarkę. Nie trzeba zmieniać ani usuwać encji pogody i Słońca.
 
-Repozytorium zawiera dokładny kod v1.7.1 ze źródła inline. Samo dodanie plików na GitHub **nie zmienia nic** w istniejącym Home Assistant.
+Repozytorium zawiera działający kod przeniesiony ze źródła inline, z numerem wersji zmienionym na 1.0.0. Samo dodanie plików na GitHub **nie zmienia nic** w istniejącym Home Assistant.
