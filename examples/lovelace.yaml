@@ -1,0 +1,21 @@
+# Przykładowa karta; dostosuj entity_id do swojej instalacji.
+type: custom:dynamic-weather-background
+entity: weather.twoja_pogoda
+sun_entity: sun.sun
+hide_card: true
+clouds: true
+cloud_speed: 42
+cloud_speed_secondary: 68
+cloud_opacity: 80
+rain: true
+snow: true
+fog: true
+hail: true
+lightning: false
+animation: auto
+performance: balanced
+card_effect: glass
+glass_blur: 10
+glass_shine: 35
+card_border: true
+card_shadow: 35
