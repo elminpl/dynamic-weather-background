@@ -1,5 +1,10 @@
 # Changelog
 
+## Niewydane
+
+- Ograniczono ponowne rysowanie tła przy aktualizacjach Home Assistant i w trybie bez animacji.
+- Dodano ręcznie uruchamiany proces wydania z automatyczną aktualizacją wersji i dokumentacji.
+
 ## 1.0.0 — pierwsze stabilne wydanie (2026-11-18)
 
 - Pierwsza stabilna wersja Dynamic Weather Background, zbudowana na kodzie sprawdzonym w Home Assistant.

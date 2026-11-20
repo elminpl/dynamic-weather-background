@@ -4,7 +4,7 @@ Dynamiczne, animowane tło widoku **Home Assistant Lovelace**, reagujące na akt
 
 **Wersja źródłowa:** 1.0.0 · **Język edytora:** polski · **Licencja:** MIT · **Zależności:** brak.
 
-> Projekt odtworzony z działającego zasobu Lovelace Home Assistant. Plik JavaScript w `dist/` bazuje na działającym kodzie z Home Assistant; zmieniono wyłącznie oznaczenie wersji na 1.0.0. Wersja 1.0.0 to pierwsze stabilne wydanie. Poprzednie iteracje były wersjami rozwojowymi. Publikacja repozytorium nie jest równoznaczna z przetestowaniem czystej instalacji.
+> Wersja 1.0.0 to punkt wyjścia projektu, odtworzony z działającego zasobu Lovelace Home Assistant.
 
 ## Możliwości
 
@@ -55,6 +55,10 @@ Wtyczka odczytuje istniejące encje Home Assistant — **nie odpytuje zewnętrzn
 ## Rozwój i zgłoszenia
 
 Zgłoszenia błędów: [GitHub Issues](https://github.com/elminpl/dynamic-weather-background/issues). Przy zgłoszeniu podaj wersję Home Assistant, wersję wtyczki, przeglądarkę, ustawienia `animation` i `performance` oraz opis problemu. Nie dołączaj tokenów ani prywatnych danych instancji.
+
+## Wydania
+
+Zmiany trafiają do sekcji **Niewydane** w [historii zmian](CHANGELOG.md). Wydanie przygotowujemy po zebraniu i sprawdzeniu zmian. Na GitHubie workflow **Wydanie wtyczki** uruchamia się ręcznie z gałęzi `main`. Wybierz `patch` dla poprawek, `minor` dla zgodnych wstecz nowych funkcji albo `major` dla zmian niezgodnych wstecz. Workflow zwiększa numer w module i README, przenosi wpisy do nowej sekcji w changelogu oraz publikuje tag i wydanie z plikiem JavaScript.
 
 ## Licencja
 

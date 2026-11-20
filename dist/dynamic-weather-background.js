@@ -387,7 +387,7 @@ export class DynamicWeatherBackground extends HTMLElement {
   constructor() {
     super(); this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = `<style>:host{display:block}ha-card{padding:12px;font:14px sans-serif}canvas{width:100%;height:180px;display:block;border-radius:12px}p{margin:8px 0}</style><ha-card><strong>Dynamic Weather Background · ${VERSION}</strong><p></p><canvas aria-hidden="true"></canvas></ha-card>`;
-    this._sync = this._sync.bind(this); this._resize = this._resize.bind(this);
+    this._sync = this._sync.bind(this);
     this._frame = this._frame.bind(this); this._last = 0; this._seconds = 0;
     this._previewOverride = null; this._transitionDuration = 12000;
   }
@@ -400,7 +400,7 @@ export class DynamicWeatherBackground extends HTMLElement {
     if (this._abort) return;
     this._abort = new AbortController(); const signal = this._abort.signal;
     for (const event of ["location-changed", "popstate", "hashchange", "pageshow"]) window.addEventListener(event, this._sync, { signal });
-    window.addEventListener("resize", this._resize, { signal });
+    window.addEventListener("resize", this._sync, { signal });
     document.addEventListener("visibilitychange", this._sync, { signal });
     window.addEventListener("dynamic-weather-temporary-preview", event => { if (event.detail?.path !== location.pathname) return; this._previewOverride = event.detail.preview; this._sync(); }, { signal });
     this._motion = matchMedia("(prefers-reduced-motion: reduce)");
@@ -504,22 +504,33 @@ export class DynamicWeatherBackground extends HTMLElement {
     if (this._scene.warning) card.querySelector("p").textContent += ` · ${this._scene.warning}`;
     this._q = quality(c, !!this._motion?.matches, !!this._mobile?.matches);
     if (canvas !== this._canvas) { this._stop(); this._canvas = canvas; this._renderer = new SkyRenderer(canvas); }
-    this._resize();
     if (document.hidden || (view && !active) || (this.style.display === "none" && !full)) { this._stop(); return; }
-    if (!this._q.fps) { this._stop(); this._paint(0); }
-    else if (this._raf === undefined) this._raf = requestAnimationFrame(this._frame);
+    const resized = this._resize();
+    if (!this._q.fps) {
+      this._stop();
+      this._transitionSnapshot = undefined;
+      const previous = this._staticFrame;
+      if (resized || previous?.sceneKey !== sceneKey || previous.config !== c) {
+        this._paint(0);
+        this._staticFrame = { sceneKey, config: c };
+      }
+    } else {
+      this._staticFrame = undefined;
+      if (resized) this._paint(this._seconds);
+      if (this._raf === undefined) this._raf = requestAnimationFrame(this._frame);
+    }
   }
   _resize() {
     if (!this._renderer || !this._q) return;
-    const rect = this._canvas.getBoundingClientRect();
-    const w = this._portal ? window.innerWidth : rect.width || 360;
+    const w = this._portal ? window.innerWidth : this._canvas.getBoundingClientRect().width || 360;
     const h = this._portal ? window.innerHeight : 180;
     const dpr = Math.min(window.devicePixelRatio || 1, this._q.dpr);
     const key = `${w},${h},${dpr}`;
     if (this._size !== key || this._renderer !== this._sizedRenderer) {
       this._size = key; this._sizedRenderer = this._renderer; this._renderer.resize(w, h, dpr);
+      return true;
     }
-    if (this._scene) this._paint(this._q.fps ? this._seconds : 0);
+    return false;
   }
   _paint(seconds) {
     if (!this._renderer || !this._scene) return;

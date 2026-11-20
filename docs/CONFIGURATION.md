@@ -1,6 +1,6 @@
-# Konfiguracja — Dynamic Weather Background 1.0.0
+# Konfiguracja — Dynamic Weather Background
 
-Wartości poniżej odpowiadają oryginalnemu kodowi v1.0.0. Kartę można skonfigurować również wizualnie w interfejsie Home Assistant.
+Poniżej opisano wartości domyślne. Kartę można skonfigurować również wizualnie w interfejsie Home Assistant.
 
 ## Źródła danych i zachowanie
 
