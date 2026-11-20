@@ -2,6 +2,8 @@
 
 ## Niewydane
 
+## 1.0.1 (2026-11-20)
+
 - Ograniczono ponowne rysowanie tła przy aktualizacjach Home Assistant i w trybie bez animacji.
 - Dodano ręcznie uruchamiany proces wydania z automatyczną aktualizacją wersji i dokumentacji.
 

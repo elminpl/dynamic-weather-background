@@ -2,7 +2,7 @@
 
 Dynamiczne, animowane tło widoku **Home Assistant Lovelace**, reagujące na aktualną pogodę, zachmurzenie i położenie Słońca.
 
-**Wersja źródłowa:** 1.0.0 · **Język edytora:** polski · **Licencja:** MIT · **Zależności:** brak.
+**Wersja źródłowa:** 1.0.1 · **Język edytora:** polski · **Licencja:** MIT · **Zależności:** brak.
 
 > Wersja 1.0.0 to punkt wyjścia projektu, odtworzony z działającego zasobu Lovelace Home Assistant.
 
