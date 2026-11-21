@@ -29,9 +29,6 @@ next_version = {
     "major": f"{major + 1}.0.0",
 }[args.bump]
 
-pending = re.search(r"^## Niewydane\n(.*?)(?=^## |\Z)", history, re.M | re.S)
-if not pending or not re.search(r"^- \S", pending[1], re.M):
-    sys.exit("Dodaj listę zmian w sekcji Niewydane przed wydaniem.")
 if re.search(rf"^## {re.escape(next_version)}\b", history, re.M):
     sys.exit(f"Wersja {next_version} jest już w historii zmian.")
 
@@ -42,9 +39,16 @@ def replace_once(text, old, new):
 
 source = replace_once(source, f'Dynamic Weather Background v{current} |', f'Dynamic Weather Background v{next_version} |')
 source = replace_once(source, version[0], f'export const VERSION = "{next_version}";')
-readme_text = replace_once(readme_text, f"**Wersja źródłowa:** {current}", f"**Wersja źródłowa:** {next_version}")
+for label in ("Source version", "Wersja źródłowa"):
+    readme_text = replace_once(readme_text, f"**{label}:** {current}", f"**{label}:** {next_version}")
+
 today = datetime.now(timezone.utc).date().isoformat()
-history = f"{history[:pending.start()]}## Niewydane\n\n## {next_version} ({today})\n\n{pending[1].strip()}\n\n{history[pending.end():]}"
+for heading in ("Unreleased", "Niewydane"):
+    pending = re.search(rf"^## {heading}\n(.*?)(?=^## |^---$|\Z)", history, re.M | re.S)
+    if not pending or not re.search(r"^- \S", pending[1], re.M):
+        sys.exit(f"Add release notes under {heading} before publishing.")
+    section = f"## {heading}\n\n## {next_version} ({today})\n\n{pending[1].strip()}\n\n"
+    history = history[:pending.start()] + section + history[pending.end():]
 
 for path, content in ((module, source), (readme, readme_text), (changelog, history)):
     path.write_text(content, encoding="utf-8")

@@ -1,6 +1,228 @@
 /* Dynamic Weather Background v1.0.1 | MIT | No runtime dependencies. */
 export const VERSION = "1.0.1";
 export const CONDITIONS = ["sunny", "clear-night", "partlycloudy", "cloudy", "rainy", "pouring", "snowy", "snowy-rainy", "fog", "lightning", "lightning-rainy", "windy", "windy-variant", "hail", "exceptional"];
+const TRANSLATIONS = {
+  "en": {
+    "label.card_effect": "Card appearance",
+    "label.glass_blur": "Glass blur (px)",
+    "label.glass_shine": "Glass shine (%)",
+    "label.card_border": "Subtle border",
+    "label.card_shadow": "Shadow strength (%)",
+    "label.lightning_strength": "Lightning strength (%)",
+    "label.lightning_interval": "Time between flashes (s)",
+    "label.precipitation_intensity": "Precipitation intensity (%)",
+    "label.precipitation_speed": "Precipitation speed (%)",
+    "label.card_background_transparency": "Card background transparency (%)",
+    "label.fade_card_content": "Enable additional transparency for text, icons and media",
+    "label.card_content_transparency": "Text, icon and media transparency (%)",
+    "label.hide_card": "Hide card outside edit mode",
+    "label.entity": "Weather entity",
+    "label.sun_entity": "Sun entity",
+    "label.cloud_speed": "Cloud travel time — layer 1 (s)",
+    "label.cloud_speed_secondary": "Cloud travel time — layer 2 (s)",
+    "label.cloud_opacity": "Cloud opacity (%)",
+    "label.effects_opacity": "Precipitation and fog opacity (%)",
+    "label.clouds": "Clouds",
+    "label.rain": "Rain",
+    "label.snow": "Snow",
+    "label.hail": "Hail",
+    "label.fog": "Fog",
+    "label.lightning": "Lightning during thunderstorms",
+    "label.animation": "Animation",
+    "label.performance": "Performance",
+    "label.preview_weather": "Weather test (until the editor closes)",
+    "label.preview_time": "Time of day preview",
+    "label.preview_cloud_coverage": "Preview cloud coverage (%)",
+    "option.none": "Default (no effect)",
+    "option.glass": "Glass — clear glass",
+    "option.frosted": "Frosted — frosted glass",
+    "option.soft": "Soft — border and shadow",
+    "option.auto": "Automatic",
+    "option.reduced": "Reduced",
+    "option.off": "Off",
+    "option.high": "High",
+    "option.balanced": "Balanced",
+    "option.battery": "Battery saver",
+    "option.day": "Day",
+    "option.night": "Night",
+    "option.dawn": "Dawn",
+    "option.dusk": "Dusk",
+    "option.sunny": "Sunny",
+    "option.clear-night": "Clear night",
+    "option.partlycloudy": "Partly cloudy",
+    "option.cloudy": "Cloudy",
+    "option.rainy": "Rain",
+    "option.pouring": "Heavy rain",
+    "option.snowy": "Snow",
+    "option.snowy-rainy": "Sleet",
+    "option.fog": "Fog",
+    "option.lightning": "Thunderstorm",
+    "option.lightning-rainy": "Thunderstorm with rain",
+    "option.windy": "Windy",
+    "option.windy-variant": "Windy and cloudy",
+    "option.hail": "Hail",
+    "option.exceptional": "Exceptional conditions",
+    "group.basic": "Basics",
+    "group.appearance": "Card appearance",
+    "group.clouds": "Sky and clouds",
+    "group.precipitation": "Precipitation and fog",
+    "group.storm": "Thunder and lightning",
+    "group.animation": "Animation and performance",
+    "group.preview": "Preview and testing",
+    "invalidConfig": "Configuration must be an object.",
+    "invalidOption": "Invalid option: {key}",
+    "invalidNumber": "{key}: expected a number between {min} and {max}",
+    "invalidBoolean": "{key}: expected true or false",
+    "invalidEntity": "Invalid entity: {key}",
+    "noWeather": "Weather data unavailable. Showing a fallback sky.",
+    "active": "Background active on this view only",
+    "occupied": "Another card already controls this view’s background.",
+    "inactive": "This card controls the background of the view where you place it.",
+    "help": "Shorter times make clouds move faster. Automatic mode respects your system’s reduced motion setting. The preview leaves Home Assistant entities unchanged.",
+    "glassHint": "Higher values strengthen the selected card effect. Blur is capped at 8 px on mobile.",
+    "lightningHint": "Controls the intensity of the flash and lightning bolt. Reduced motion disables lightning.",
+    "precipitationHint": "100% is the default. Higher values increase intensity or speed.",
+    "transparencyHint": "0% is fully opaque and 100% is fully transparent. Blur and shine are independent of this setting.",
+    "diagnostics": "Live diagnostics",
+    "reset": "End test and return to live weather",
+    "description": "Animated background for a Home Assistant view, based on weather and sun position.",
+    "source": "Source",
+    "weather": "Weather",
+    "scene": "Scene",
+    "previewOnly": "PREVIEW ONLY",
+    "time": "Time of day",
+    "coverage": "Cloud cover",
+    "sun": "Sun",
+    "precipitation": "Precipitation",
+    "storm": "Lightning",
+    "glass": "Glass",
+    "transition": "Transition",
+    "automaticContrast": "automatic contrast",
+    "inactiveEffect": "inactive",
+    "noData": "no data",
+    "yes": "yes",
+    "no": "no",
+    "unknown": "Unknown",
+    "unavailable": "Unavailable"
+  },
+  "pl": {
+    "label.card_effect": "Efekt wyglądu kart",
+    "label.glass_blur": "Rozmycie szkła (px)",
+    "label.glass_shine": "Połysk szkła (%)",
+    "label.card_border": "Delikatne obramowanie",
+    "label.card_shadow": "Siła cienia (%)",
+    "label.lightning_strength": "Siła błyskawic (%)",
+    "label.lightning_interval": "Odstęp między wyładowaniami (s)",
+    "label.precipitation_intensity": "Intensywność opadów (%)",
+    "label.precipitation_speed": "Prędkość opadów (%)",
+    "label.card_background_transparency": "Przezroczystość teł kart (%)",
+    "label.fade_card_content": "Włącz dodatkową przezroczystość tekstu, ikon i multimediów",
+    "label.card_content_transparency": "Przezroczystość tekstu, ikon i multimediów (%)",
+    "label.hide_card": "Ukryj kartę poza trybem edycji",
+    "label.entity": "Encja pogody",
+    "label.sun_entity": "Encja Słońca",
+    "label.cloud_speed": "Czas przesuwania chmur — warstwa 1 (s)",
+    "label.cloud_speed_secondary": "Czas przesuwania chmur — warstwa 2 (s)",
+    "label.cloud_opacity": "Widoczność chmur (%)",
+    "label.effects_opacity": "Widoczność opadów i mgły (%)",
+    "label.clouds": "Chmury",
+    "label.rain": "Deszcz",
+    "label.snow": "Śnieg",
+    "label.hail": "Grad",
+    "label.fog": "Mgła",
+    "label.lightning": "Błyskawice podczas burzy i burzy z deszczem",
+    "label.animation": "Animacje",
+    "label.performance": "Wydajność",
+    "label.preview_weather": "Test pogody (tylko do zamknięcia edytora)",
+    "label.preview_time": "Podgląd pory dnia",
+    "label.preview_cloud_coverage": "Zachmurzenie w podglądzie (%)",
+    "option.none": "Standardowy (bez efektu)",
+    "option.glass": "Glass — przezroczyste szkło",
+    "option.frosted": "Frosted — matowe szkło",
+    "option.soft": "Soft — obramowanie i cień",
+    "option.auto": "Automatycznie",
+    "option.reduced": "Ograniczone",
+    "option.off": "Wyłączone",
+    "option.high": "Wysoka",
+    "option.balanced": "Zrównoważona",
+    "option.battery": "Oszczędzanie energii",
+    "option.day": "Dzień",
+    "option.night": "Noc",
+    "option.dawn": "Świt",
+    "option.dusk": "Zmierzch",
+    "option.sunny": "Słonecznie",
+    "option.clear-night": "Bezchmurna noc",
+    "option.partlycloudy": "Częściowe zachmurzenie",
+    "option.cloudy": "Pochmurno",
+    "option.rainy": "Deszcz",
+    "option.pouring": "Ulewa",
+    "option.snowy": "Śnieg",
+    "option.snowy-rainy": "Deszcz ze śniegiem",
+    "option.fog": "Mgła",
+    "option.lightning": "Burza",
+    "option.lightning-rainy": "Burza z deszczem",
+    "option.windy": "Wiatr",
+    "option.windy-variant": "Wiatr i chmury",
+    "option.hail": "Grad",
+    "option.exceptional": "Wyjątkowe warunki",
+    "group.basic": "Podstawowe",
+    "group.appearance": "Wygląd kart",
+    "group.clouds": "Niebo i chmury",
+    "group.precipitation": "Opady i mgła",
+    "group.storm": "Burza i błyskawice",
+    "group.animation": "Animacja i wydajność",
+    "group.preview": "Podgląd i testowanie",
+    "invalidConfig": "Konfiguracja musi być obiektem.",
+    "invalidOption": "Niepoprawna opcja: {key}",
+    "invalidNumber": "{key}: wymagana liczba {min}–{max}",
+    "invalidBoolean": "{key}: wymagana wartość true/false",
+    "invalidEntity": "Niepoprawna encja: {key}",
+    "noWeather": "Brak danych pogody — zastępcze niebo.",
+    "active": "Tło aktywne tylko na tej stronie",
+    "occupied": "Tło obsługuje już inna karta w tym widoku.",
+    "inactive": "Ta karta steruje tłem tylko strony, na której ją dodasz.",
+    "help": "Niższy czas = szybsze chmury. „Automatycznie” respektuje systemowe ograniczenie ruchu. Podgląd nie zmienia encji HA.",
+    "glassHint": "Dotyczy wybranego efektu kart. Wyższa wartość wzmacnia efekt. Na telefonie rozmycie ma limit 8 px.",
+    "lightningHint": "Siła rozświetlenia nieba i widoczność rozgałęzionego pioruna. Ograniczenie ruchu wyłącza błyskawice.",
+    "precipitationHint": "100% = normalne opady. Wyższa wartość zwiększa intensywność lub prędkość.",
+    "transparencyHint": "0% = pełne krycie koloru, 100% = całkowita przezroczystość. Rozmycie i połysk nie zmieniają tego ustawienia.",
+    "diagnostics": "Diagnostyka na żywo",
+    "reset": "Zakończ test i wróć do pogody na żywo",
+    "description": "Dynamiczne tło wybranego widoku: pogoda, chmury i Słońce.",
+    "source": "Źródło",
+    "weather": "Pogoda",
+    "scene": "Scena",
+    "previewOnly": "TYLKO PODGLĄD",
+    "time": "Pora dnia",
+    "coverage": "Zachmurzenie",
+    "sun": "Słońce",
+    "precipitation": "Opady",
+    "storm": "Burza",
+    "glass": "Glass",
+    "transition": "Przejście",
+    "automaticContrast": "kontrast automatyczny",
+    "inactiveEffect": "nieaktywny",
+    "noData": "brak danych",
+    "yes": "tak",
+    "no": "nie",
+    "unknown": "Nieznany",
+    "unavailable": "Niedostępny"
+  }
+};
+
+export function languageFor(hass) {
+  const locale = hass?.locale?.language || hass?.language || "en";
+  const language = locale.toLowerCase().replaceAll("_", "-");
+  if (Object.hasOwn(TRANSLATIONS, language)) return language;
+  const base = language.split("-")[0];
+  return Object.hasOwn(TRANSLATIONS, base) ? base : "en";
+}
+
+export function translate(language, key, values = {}) {
+  const catalog = Object.hasOwn(TRANSLATIONS, language) ? TRANSLATIONS[language] : TRANSLATIONS.en;
+  return (catalog[key] ?? TRANSLATIONS.en[key] ?? key).replace(/\{(\w+)\}/g, (match, name) => values[name] ?? match);
+}
+
 export const DEFAULTS = Object.freeze({
   entity: "weather.forecast_dom", sun_entity: "sun.sun",
   hide_card: true, cloud_speed: 42, cloud_speed_secondary: 68,
@@ -15,16 +237,16 @@ export const DEFAULTS = Object.freeze({
 const ENUMS = { card_effect: ["none", "glass", "frosted", "soft"], animation: ["auto", "reduced", "off"], performance: ["high", "balanced", "battery"],
   preview_weather: ["off", ...CONDITIONS], preview_time: ["auto", "day", "night", "dawn", "dusk"] };
 const RANGES = { cloud_speed: [10, 240], cloud_speed_secondary: [10, 240], cloud_opacity: [0, 100], effects_opacity: [0, 100], preview_cloud_coverage: [0, 100], card_background_transparency: [0, 100], card_content_transparency: [0, 100], precipitation_intensity: [0, 200], precipitation_speed: [10, 200], lightning_strength: [0, 100], lightning_interval: [6, 60], glass_blur: [0, 24], glass_shine: [0, 100], card_shadow: [0, 100] };
-export function normalizeConfig(input) {
-  if (!input || typeof input !== "object" || Array.isArray(input)) throw new Error("Konfiguracja musi być obiektem.");
+export function normalizeConfig(input, language = "en") {
+  if (!input || typeof input !== "object" || Array.isArray(input)) throw new Error(translate(language, "invalidConfig"));
   const c = { ...DEFAULTS, ...input };
-  for (const [key, choices] of Object.entries(ENUMS)) if (!choices.includes(c[key])) throw new Error(`Niepoprawna opcja: ${key}`);
+  for (const [key, choices] of Object.entries(ENUMS)) if (!choices.includes(c[key])) throw new Error(translate(language, "invalidOption", { key }));
   for (const [key, [min, max]] of Object.entries(RANGES)) {
-    if (typeof c[key] !== "number" || !Number.isFinite(c[key]) || c[key] < min || c[key] > max) throw new Error(`${key}: wymagana liczba ${min}–${max}`);
+    if (typeof c[key] !== "number" || !Number.isFinite(c[key]) || c[key] < min || c[key] > max) throw new Error(translate(language, "invalidNumber", { key, min, max }));
   }
-  for (const key of ["clouds", "rain", "snow", "fog", "hail", "lightning", "hide_card", "fade_card_content", "card_border"]) if (typeof c[key] !== "boolean") throw new Error(`${key}: wymagana wartość true/false`);
+  for (const key of ["clouds", "rain", "snow", "fog", "hail", "lightning", "hide_card", "fade_card_content", "card_border"]) if (typeof c[key] !== "boolean") throw new Error(translate(language, "invalidBoolean", { key }));
   for (const [key, domain] of [["entity", "weather"], ["sun_entity", "sun"]]) {
-    if (typeof c[key] !== "string" || !new RegExp(`^${domain}\\.[a-z0-9_]+$`).test(c[key])) throw new Error(`Niepoprawna encja: ${key}`);
+    if (typeof c[key] !== "string" || !new RegExp(`^${domain}\\.[a-z0-9_]+$`).test(c[key])) throw new Error(translate(language, "invalidEntity", { key }));
   }
   // Old route selectors are deliberately discarded: placement defines the scope.
   delete c.target_path; delete c.target_paths; delete c.glass_tint;
@@ -55,7 +277,7 @@ export function timeOfDay(sun, now = Date.now()) {
   }
   return e !== null ? (e < -6 ? "night" : "day") : sun.state === "below_horizon" ? "night" : "day";
 }
-export function deriveScene(c, states = {}, now) {
+export function deriveScene(c, states = {}, now, language = "en") {
   const weather = states[c.entity];
   const preview = c.preview_weather !== "off";
   const condition = preview ? c.preview_weather : CONDITIONS.includes(weather?.state) ? weather.state : "partlycloudy";
@@ -67,7 +289,7 @@ export function deriveScene(c, states = {}, now) {
     hail: c.hail && condition === "hail",
     snow: c.snow && ["snowy", "snowy-rainy"].includes(condition), fog: c.fog && condition === "fog",
     lightning: c.lightning && ["lightning", "lightning-rainy"].includes(condition),
-    warning: !preview && (!weather || ["unknown", "unavailable"].includes(weather.state)) ? "Brak danych pogody — zastępcze niebo." : "" };
+    warning: !preview && (!weather || ["unknown", "unavailable"].includes(weather.state)) ? translate(language, "noWeather") : "" };
 }
 export function quality(c, reduced, mobile) {
   const still = c.animation === "off" || (c.animation === "auto" && reduced);
@@ -391,7 +613,7 @@ export class DynamicWeatherBackground extends HTMLElement {
     this._frame = this._frame.bind(this); this._last = 0; this._seconds = 0;
     this._previewOverride = null; this._transitionDuration = 12000;
   }
-  setConfig(input) { this._config = normalizeConfig(input); this._sync(); }
+  setConfig(input) { this._config = normalizeConfig(input, languageFor(this._hass)); this._sync(); }
   set hass(value) { this._hass = value; this._sync(); }
   set preview(value) { this._preview = value; this._sync(); }
   getCardSize() { return this._config?.hide_card && !this._preview ? 0 : 1; }
@@ -486,9 +708,10 @@ export class DynamicWeatherBackground extends HTMLElement {
     // The controller is visible in edit mode; its own wrapper is removed from normal layout.
     this.shadowRoot.querySelector("canvas").hidden = !!full || !!ancestorView;
     this.shadowRoot.querySelector("canvas").style.display = full || ancestorView ? "none" : "block";
-    card.querySelector("p").textContent = full ? "Tło aktywne tylko na tej stronie" : active ? "Tło obsługuje już inna karta w tym widoku." : "Ta karta steruje tłem tylko strony, na której ją dodasz.";
+    const language = languageFor(this._hass);
+    card.querySelector("p").textContent = full ? translate(language, "active") : active ? translate(language, "occupied") : translate(language, "inactive");
     const previewConfig = this._previewOverride ? { ...c, ...this._previewOverride } : c;
-    const nextScene = deriveScene(previewConfig, this._hass?.states);
+    const nextScene = deriveScene(previewConfig, this._hass?.states, undefined, language);
     const sceneKey = JSON.stringify([nextScene.condition,nextScene.time,nextScene.coverage,nextScene.storm,nextScene.rain,nextScene.snow,nextScene.hail,nextScene.fog,nextScene.lightning]);
     if (this._sceneKey && this._sceneKey !== sceneKey && this._canvas?.width && this._canvas?.height && this._q?.fps) {
       const snapshot = document.createElement("canvas"); snapshot.width=this._canvas.width; snapshot.height=this._canvas.height;
@@ -556,41 +779,23 @@ export class DynamicWeatherBackground extends HTMLElement {
     this._raf = requestAnimationFrame(this._frame);
   }
 }
-const LABELS = {
-  card_effect: "Efekt wyglądu kart",
-  glass_blur: "Rozmycie szkła (px)",
-  glass_shine: "Połysk szkła (%)",
-  card_border: "Delikatne obramowanie",
-  card_shadow: "Siła cienia (%)",
-  lightning_strength: "Siła błyskawic (%)",
-  lightning_interval: "Odstęp między wyładowaniami (s)",
-  precipitation_intensity: "Intensywność opadów (%)",
-  precipitation_speed: "Prędkość opadów (%)",
-  card_background_transparency: "Przezroczystość teł kart (%)",
-  fade_card_content: "Włącz dodatkową przezroczystość tekstu, ikon i multimediów",
-  card_content_transparency: "Przezroczystość tekstu, ikon i multimediów (%)",
-  hide_card: "Ukryj kartę poza trybem edycji",
-  entity: "Encja pogody", sun_entity: "Encja Słońca", 
-  cloud_speed: "Czas przesuwania chmur — warstwa 1 (s)", cloud_speed_secondary: "Czas przesuwania chmur — warstwa 2 (s)",
-  cloud_opacity: "Widoczność chmur (%)", effects_opacity: "Widoczność opadów i mgły (%)",
-  clouds: "Chmury", rain: "Deszcz", snow: "Śnieg", hail: "Grad", fog: "Mgła", lightning: "Błyskawice podczas burzy i burzy z deszczem",
-  animation: "Animacje", performance: "Wydajność", preview_weather: "Test pogody (tylko do zamknięcia edytora)",
-  preview_time: "Podgląd pory dnia", preview_cloud_coverage: "Zachmurzenie w podglądzie (%)"
-};
-const OPTION_LABELS = { none:"Standardowy (bez efektu)",glass:"Glass — przezroczyste szkło",frosted:"Frosted — matowe szkło",soft:"Soft — obramowanie i cień", auto: "Automatycznie", reduced: "Ograniczone", off: "Wyłączone", high: "Wysoka", balanced: "Zrównoważona", battery: "Oszczędzanie energii", day: "Dzień", night: "Noc", dawn: "Świt", dusk: "Zmierzch", sunny: "Słonecznie", "clear-night": "Bezchmurna noc", partlycloudy: "Częściowe zachmurzenie", cloudy: "Pochmurno", rainy: "Deszcz", pouring: "Ulewa", snowy: "Śnieg", "snowy-rainy": "Deszcz ze śniegiem", fog: "Mgła", lightning: "Burza", "lightning-rainy": "Burza z deszczem", windy: "Wiatr", "windy-variant": "Wiatr i chmury", hail: "Grad", exceptional: "Wyjątkowe warunki" };
 export const SETTINGS_GROUPS = [
-  {name:"Podstawowe",keys:["entity","sun_entity","hide_card"]},
-  {name:"Wygląd kart",keys:["card_effect","glass_blur","glass_shine","card_border","card_shadow","card_background_transparency","fade_card_content","card_content_transparency"]},
-  {name:"Niebo i chmury",keys:["clouds","cloud_opacity","cloud_speed","cloud_speed_secondary"]},
-  {name:"Opady i mgła",keys:["rain","snow","hail","fog","precipitation_intensity","precipitation_speed","effects_opacity"]},
-  {name:"Burza i błyskawice",keys:["lightning","lightning_strength","lightning_interval"]},
-  {name:"Animacja i wydajność",keys:["animation","performance"]},
-  {name:"Podgląd i testowanie",keys:["preview_weather","preview_time","preview_cloud_coverage"]}
+  {name:"basic",keys:["entity","sun_entity","hide_card"]},
+  {name:"appearance",keys:["card_effect","glass_blur","glass_shine","card_border","card_shadow","card_background_transparency","fade_card_content","card_content_transparency"]},
+  {name:"clouds",keys:["clouds","cloud_opacity","cloud_speed","cloud_speed_secondary"]},
+  {name:"precipitation",keys:["rain","snow","hail","fog","precipitation_intensity","precipitation_speed","effects_opacity"]},
+  {name:"storm",keys:["lightning","lightning_strength","lightning_interval"]},
+  {name:"animation",keys:["animation","performance"]},
+  {name:"preview",keys:["preview_weather","preview_time","preview_cloud_coverage"]}
 ];
 export class DynamicWeatherBackgroundEditor extends HTMLElement {
   constructor() { super(); this.attachShadow({ mode: "open" }); }
-  setConfig(c) { this._config = normalizeConfig(c); this._build(); }
-  set hass(h) { this._hass = h; this._entities(); this._diagnostics(); }
+  setConfig(c) { this._config = normalizeConfig(c, languageFor(this._hass)); this._build(); }
+  set hass(h) {
+    this._hass = h;
+    if (this._builtLanguage !== languageFor(h)) this._build();
+    else { this._entities(); this._diagnostics(); }
+  }
   _emit() {
     this.dispatchEvent(new CustomEvent("config-changed", { detail: { config: { ...this._config, type: "custom:dynamic-weather-background" } }, bubbles: true, composed: true }));
   }
@@ -605,23 +810,24 @@ export class DynamicWeatherBackgroundEditor extends HTMLElement {
   }
   _build() {
     if (!this._config) return;
-    if (!this._built) {
-      this.shadowRoot.innerHTML = `<style>:host{display:block;color:var(--primary-text-color);font:14px sans-serif}label{display:grid;gap:6px;margin:14px 0}input,select{box-sizing:border-box;width:100%;padding:9px;font:inherit;color:inherit;background:var(--card-background-color,#fff);border:1px solid #888;border-radius:6px}input[type=checkbox]{width:22px;height:22px}small{opacity:.75}#error{color:var(--error-color,#b00020)}fieldset{border:0;padding:0}legend{font-weight:bold;margin-top:16px}</style><p>Dynamic Weather Background ${VERSION}</p><small>Niższy czas = szybsze chmury. „Automatycznie” respektuje systemowe ograniczenie ruchu. Podgląd nie zmienia encji HA.</small><fieldset><legend>Ustawienia</legend></fieldset><p id="error" role="alert"></p><datalist id="weather-entities"></datalist><datalist id="sun-entities"></datalist>`;
-      this.shadowRoot.querySelector("fieldset").remove();
+    const language = languageFor(this._hass);
+    if (this._builtLanguage !== language) {
+      this.shadowRoot.innerHTML = `<style>:host{display:block;color:var(--primary-text-color);font:14px sans-serif}label{display:grid;gap:6px;margin:14px 0}input,select{box-sizing:border-box;width:100%;padding:9px;font:inherit;color:inherit;background:var(--card-background-color,#fff);border:1px solid #888;border-radius:6px}input[type=checkbox]{width:22px;height:22px}small{opacity:.75}#error{color:var(--error-color,#b00020)}fieldset{border:0;padding:0}legend{font-weight:bold;margin-top:16px}</style><p>Dynamic Weather Background ${VERSION}</p><small id="editor-help"></small><p id="error" role="alert"></p><datalist id="weather-entities"></datalist><datalist id="sun-entities"></datalist>`;
+      this.shadowRoot.getElementById("editor-help").textContent = translate(language, "help");
       const hiddenStyle=document.createElement("style");hiddenStyle.textContent="[hidden]{display:none!important}";this.shadowRoot.append(hiddenStyle);
       const groups=new Map();
       for(const group of SETTINGS_GROUPS) {
         const details=document.createElement("details");details.open=!!group.open;
-        const summary=document.createElement("summary");summary.textContent=group.name;summary.style.cssText="font-weight:600;padding:12px 0;cursor:pointer";
-        const fieldset=document.createElement("fieldset");fieldset.setAttribute("aria-label",group.name);
+        const summary=document.createElement("summary");summary.textContent=translate(language, `group.${group.name}`);summary.style.cssText="font-weight:600;padding:12px 0;cursor:pointer";
+        const fieldset=document.createElement("fieldset");fieldset.setAttribute("aria-label",summary.textContent);
         details.append(summary,fieldset);this.shadowRoot.append(details);
         for(const key of group.keys)groups.set(key,fieldset);
       }
       for (const key of SETTINGS_GROUPS.flatMap(group=>group.keys)) {
-        const label = document.createElement("label"); label.dataset.setting=key; label.textContent = LABELS[key];
+        const label = document.createElement("label"); label.dataset.setting=key; label.textContent = translate(language, `label.${key}`);
         const control = document.createElement(ENUMS[key] ? "select" : "input"); control.dataset.key = key;
         if (ENUMS[key]) for (const value of ENUMS[key]) {
-          const option = document.createElement("option"); option.value = value; option.textContent = OPTION_LABELS[value] || value; control.append(option);
+          const option = document.createElement("option"); option.value = value; option.textContent = translate(language, `option.${value}`); control.append(option);
         }
         else if (RANGES[key]) { control.type = ["card_background_transparency", "card_content_transparency", "precipitation_intensity", "precipitation_speed", "lightning_strength", "glass_blur", "glass_shine", "card_shadow"].includes(key) ? "range" : "number"; control.min = RANGES[key][0]; control.max = RANGES[key][1]; control.step = "1"; }
         else if (typeof DEFAULTS[key] === "boolean") control.type = "checkbox";
@@ -634,7 +840,7 @@ export class DynamicWeatherBackgroundEditor extends HTMLElement {
             this._diagnostics(); return;
           }
           try {
-            const next = normalizeConfig({ ...this._config, [key]: value });
+            const next = normalizeConfig({ ...this._config, [key]: value }, language);
             this._config = next; this._build(); this.shadowRoot.getElementById("error").textContent = "";
             this.dispatchEvent(new CustomEvent("config-changed", { detail: { config: { ...next, type: "custom:dynamic-weather-background" } }, bubbles: true, composed: true }));
           } catch (error) { this.shadowRoot.getElementById("error").textContent = error.message; }
@@ -643,24 +849,26 @@ export class DynamicWeatherBackgroundEditor extends HTMLElement {
         if (control.type === "range") {
           const output = document.createElement("output"); output.dataset.outputFor = key;
           control.addEventListener("input", () => { output.textContent = `${control.value}${key==="glass_blur"?" px":"%"}`; }); label.append(output);
-          const hint = document.createElement("small"); hint.textContent = key.startsWith("glass_") || key==="card_shadow" ? "Dotyczy wybranego efektu kart. Wyższa wartość wzmacnia efekt. Na telefonie rozmycie ma limit 8 px." : key==="lightning_strength" ? "Siła rozświetlenia nieba i widoczność rozgałęzionego pioruna. Ograniczenie ruchu wyłącza błyskawice." : key.startsWith("precipitation_") ? "100% = normalne opady. Wyższa wartość zwiększa intensywność lub prędkość." : "0% = pełne krycie koloru, 100% = całkowita przezroczystość. Rozmycie i połysk nie zmieniają tego ustawienia."; label.append(hint);
+          const hint = document.createElement("small"); hint.textContent = key.startsWith("glass_") || key==="card_shadow" ? translate(language, "glassHint") : key==="lightning_strength" ? translate(language, "lightningHint") : key.startsWith("precipitation_") ? translate(language, "precipitationHint") : translate(language, "transparencyHint"); label.append(hint);
         }
         groups.get(key).append(label);
       }
-      const diagnostic=document.createElement("details");diagnostic.innerHTML='<summary style="font-weight:600;padding:12px 0;cursor:pointer">Diagnostyka na żywo</summary><pre id="weather-diagnostics" style="white-space:pre-wrap;font:12px monospace"></pre>';
+      const diagnostic=document.createElement("details");diagnostic.innerHTML='<summary style="font-weight:600;padding:12px 0;cursor:pointer"></summary><pre id="weather-diagnostics" style="white-space:pre-wrap;font:12px monospace"></pre>';
+      diagnostic.querySelector("summary").textContent = translate(language, "diagnostics");
       this.shadowRoot.append(diagnostic);
-      const reset = document.createElement("button"); reset.type = "button"; reset.textContent = "Zakończ test i wróć do pogody na żywo";
+      const reset = document.createElement("button"); reset.type = "button"; reset.textContent = translate(language, "reset");
       reset.addEventListener("click", () => {
         this._temporary=null; window.dispatchEvent(new CustomEvent("dynamic-weather-temporary-preview", {detail:{path:location.pathname,preview:null}})); this._build(); this._diagnostics();
       });
       groups.get("preview_weather").append(reset);
-      this._built = true; this._entities(); this._diagnostics();
+      this._built = true; this._builtLanguage = language; this._entities(); this._diagnostics();
     }
+    const values = { ...this._config, ...this._temporary };
     for (const control of this.shadowRoot.querySelectorAll("[data-key]")) {
-      if (control.type === "checkbox") control.checked = this._config[control.dataset.key];
-      else control.value = this._config[control.dataset.key];
+      if (control.type === "checkbox") control.checked = values[control.dataset.key];
+      else control.value = values[control.dataset.key];
     }
-    for (const output of this.shadowRoot.querySelectorAll("[data-output-for]")) output.textContent = `${this._config[output.dataset.outputFor]}${output.dataset.outputFor==="glass_blur"?" px":"%"}`;
+    for (const output of this.shadowRoot.querySelectorAll("[data-output-for]")) output.textContent = `${values[output.dataset.outputFor]}${output.dataset.outputFor==="glass_blur"?" px":"%"}`;
     this._dependencies(); this._diagnostics();
   }
   disconnectedCallback() {
@@ -671,7 +879,24 @@ export class DynamicWeatherBackgroundEditor extends HTMLElement {
     const el=this.shadowRoot.getElementById("weather-diagnostics"); if (!el || !this._hass) return;
     const c={...this._config,...(this._temporary||{})}; const weather=this._hass.states[c.entity]; const sun=this._hass.states[c.sun_entity];
     const scene=deriveScene(c,this._hass.states);
-    el.textContent=`Źródło: ${c.entity}\nPogoda: ${weather?.state || "brak danych"}\nScena: ${scene.condition}${this._temporary ? " (TYLKO PODGLĄD)" : ""}\nPora dnia: ${scene.time}\nZachmurzenie: ${Math.round(scene.coverage)}%\nSłońce: ${sun?.attributes?.elevation ?? "brak danych"}°\nOpady: ${scene.rain?"deszcz ":""}${scene.snow?"śnieg ":""}${scene.hail?"grad":""}\nBurza: ${scene.lightning?"tak":"nie"}\nGlass: ${c.card_effect === "glass" ? "kontrast automatyczny" : "nieaktywny"}\nPrzejście: 12 s`;
+    const language = languageFor(this._hass);
+    const t = (key) => translate(language, key);
+    const option = (value) => CONDITIONS.includes(value) || ["day", "night", "dawn", "dusk"].includes(value) ? t(`option.${value}`) : value;
+    const precipitation = ["rain", "snow", "hail"].filter(type => scene[type]).map(type => t(`option.${type}`)).join(", ");
+    const weatherLabel = ["unknown", "unavailable"].includes(weather?.state) ? t(weather.state) : option(weather?.state) || t("noData");
+    const elevation = sun?.attributes?.elevation;
+    el.textContent = [
+      `${t("source")}: ${c.entity}`,
+      `${t("weather")}: ${weatherLabel}`,
+      `${t("scene")}: ${option(scene.condition)}${this._temporary ? ` (${t("previewOnly")})` : ""}`,
+      `${t("time")}: ${option(scene.time)}`,
+      `${t("coverage")}: ${Math.round(scene.coverage)}%`,
+      `${t("sun")}: ${elevation == null ? t("noData") : `${elevation}°`}`,
+      `${t("precipitation")}: ${precipitation}`,
+      `${t("storm")}: ${t(scene.lightning ? "yes" : "no")}`,
+      `${t("glass")}: ${t(c.card_effect === "glass" ? "automaticContrast" : "inactiveEffect")}`,
+      `${t("transition")}: 12 s`,
+    ].join("\n");
   }
   _dependencies() {
     for(const key of ["lightning_strength","lightning_interval","card_content_transparency"]) {
@@ -687,4 +912,4 @@ export class DynamicWeatherBackgroundEditor extends HTMLElement {
 if (!customElements.get("dynamic-weather-background")) customElements.define("dynamic-weather-background", DynamicWeatherBackground);
 if (!customElements.get("dynamic-weather-background-editor")) customElements.define("dynamic-weather-background-editor", DynamicWeatherBackgroundEditor);
 window.customCards = window.customCards || [];
-if (!window.customCards.some(c => c.type === "dynamic-weather-background")) window.customCards.push({ type: "dynamic-weather-background", name: "Dynamic Weather Background", description: "Dynamiczne tło wybranego widoku: pogoda, chmury i Słońce.", preview: true });
+if (!window.customCards.some(c => c.type === "dynamic-weather-background")) window.customCards.push({ type: "dynamic-weather-background", name: "Dynamic Weather Background", description: translate(languageFor(document.querySelector("home-assistant")?.hass), "description"), preview: true });

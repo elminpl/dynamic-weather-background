@@ -38,8 +38,12 @@ jobs:
           git tag "$tag"
           git push --atomic origin HEAD:refs/heads/main "refs/tags/$tag"
           awk -v version="$version" '
-            $1 == "##" && $2 == version { notes = 1; next }
-            /^## / && notes { exit }
+            $1 == "##" && $2 == version {
+              print ++sections == 1 ? "## English" : "## Polski"
+              notes = 1
+              next
+            }
+            /^## |^---$/ { notes = 0 }
             notes { print }
           ' CHANGELOG.md > "$RUNNER_TEMP/release-notes.md"
           gh release create "$tag" --verify-tag --title "$tag" \

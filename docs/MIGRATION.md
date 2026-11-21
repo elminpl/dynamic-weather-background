@@ -1,3 +1,20 @@
+# Migrating from an inline resource
+
+The project originated from an inline Lovelace module.
+
+1. Back up the dashboard configuration and card settings. Save a copy of the original inline JavaScript.
+2. Verify that the existing card uses `custom:dynamic-weather-background` and works.
+3. Download the module through Marketplace, HACS, or the manual installation method. Both modules register the same custom element, so use a single version.
+4. Switch the dashboard resource to the new JavaScript module once it is available and remove the old inline entry.
+5. Hard-refresh the browser, open the card editor, and check the diagnostics and background in the same view.
+6. Use the temporary preview to test different weather conditions and times of day.
+
+**Rollback.** Replace the new dashboard resource with the original inline module, then reload the page. Keep your weather and sun entities.
+
+Publishing files on GitHub leaves your existing Home Assistant installation unchanged.
+
+---
+
 # Migracja z inline resource do repozytorium
 
 Ta instalacja została odtworzona z istniejącego modułu inline w zasobach Lovelace. Nie zmieniaj aktywnej konfiguracji bez kopii.
