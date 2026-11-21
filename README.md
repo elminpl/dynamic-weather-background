@@ -10,7 +10,7 @@ Dynamiczne, animowane tło widoku **Home Assistant Lovelace**, reagujące na akt
 
 - Tło przypisane do konkretnego widoku, w którym umieszczono kartę; bez globalnego wpływu na wszystkie pulpity.
 - Sceny dnia, nocy, świtu i zmierzchu na podstawie `sun.sun`.
-- Reakcja na encję `weather.*`: chmury, deszcz, śnieg, grad, mgła, wiatr i burze.
+- Reakcja na encję `weather.*`: chmury, deszcz, śnieg, grad, mgła i burze. Stany `windy` i `windy-variant` wpływają na domyślne zachmurzenie.
 - Dwuwarstwowe animowane chmury i regulacja ich szybkości oraz widoczności.
 - Efekty wyglądu innych kart: **none, glass, frosted, soft**.
 - Ustawienia jakości (**high / balanced / battery**) i animacji (**auto / reduced / off**).
@@ -19,16 +19,17 @@ Dynamiczne, animowane tło widoku **Home Assistant Lovelace**, reagujące na akt
 
 ## Instalacja przez Marketplace / HACS
 
-1. Dodaj adres `https://github.com/elminpl/dynamic-weather-background` jako **własne repozytorium Dashboard/Plugin** w Marketplace lub HACS. Repozytorium musi być dostępne dla Twojej instalacji; publikacja publiczna ułatwia instalację innym.
-2. Zainstaluj wtyczkę. W razie potrzeby przeładuj stronę przeglądarki.
-3. Dodaj nową kartę do wybranego widoku i wybierz **Dynamic Weather Background**, lub użyj edytora YAML.
-4. Wskaż istniejącą encję `weather.*` i `sun.sun`.
+1. Otwórz **Marketplace** (w starszych instalacjach **HACS**) i wybierz **⋮ → Własne repozytoria** (*Custom repositories*).
+2. Wklej `https://github.com/elminpl/dynamic-weather-background`, wybierz kategorię **Dashboard** (w starszym HACS **Lovelace** lub **Plugin**) i dodaj repozytorium.
+3. Otwórz **Dynamic Weather Background** w katalogu i pobierz wtyczkę. W razie potrzeby przeładuj stronę przeglądarki.
+4. Dodaj nową kartę do wybranego widoku i wybierz **Dynamic Weather Background**, lub użyj edytora YAML.
+5. Wskaż istniejącą encję `weather.*` i `sun.sun`.
 
 Nie dodawaj jednocześnie dwóch instancji tej karty w tym samym widoku. Jeżeli w HA masz już starszy zasób inline, zapoznaj się z [instrukcją migracji](docs/MIGRATION.md) **przed** instalacją kolejnej kopii.
 
 ### Ręczna instalacja
 
-Skopiuj [`dist/dynamic-weather-background.js`](dist/dynamic-weather-background.js) do `/config/www/dynamic-weather-background.js`. W zasobach dashboardu dodaj moduł JavaScript o URL `/local/dynamic-weather-background.js` i odśwież stronę. **Nie dodawaj podwójnego wpisu zasobu**, jeżeli instalację obsługuje HACS/Marketplace.
+Pobierz `dynamic-weather-background.js` z sekcji **Assets** w [najnowszym wydaniu](https://github.com/elminpl/dynamic-weather-background/releases/latest) i skopiuj go do `/config/www/dynamic-weather-background.js`. W zasobach dashboardu dodaj moduł JavaScript o URL `/local/dynamic-weather-background.js` i odśwież stronę. **Nie dodawaj podwójnego wpisu zasobu**, jeżeli instalację obsługuje HACS/Marketplace.
 
 ### Minimalna karta
 
@@ -50,7 +51,7 @@ Zamień `weather.twoja_pogoda` na rzeczywiste `entity_id` z Home Assistant. Pozo
 
 ## Zasady działania
 
-Wtyczka odczytuje istniejące encje Home Assistant — **nie odpytuje zewnętrznego serwisu pogody**. Częstotliwość aktualizacji informacji pogodowych zależy od zainstalowanej integracji pogodowej. Animacja działa lokalnie w przeglądarce; preferencja systemowa ograniczenia ruchu jest respektowana.
+Wtyczka odczytuje istniejące encje Home Assistant — **nie odpytuje zewnętrznego serwisu pogody**. Częstotliwość aktualizacji informacji pogodowych zależy od zainstalowanej integracji pogodowej. Animacja działa lokalnie w przeglądarce. W trybie `auto` systemowa preferencja ograniczenia ruchu wyłącza animację.
 
 ## Rozwój i zgłoszenia
 
