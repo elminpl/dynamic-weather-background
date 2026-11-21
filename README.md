@@ -2,7 +2,7 @@
 
 Animated backgrounds for **Home Assistant Lovelace** views based on the current weather, cloud cover, and sun position.
 
-**Source version:** 1.0.1 · **Interface languages:** English and Polish · **License:** MIT · **Dependencies:** none.
+**Source version:** 1.1.0 · **Interface languages:** English and Polish · **License:** MIT · **Dependencies:** none.
 
 [Przejdź do wersji polskiej](#dynamic-weather-background-1)
 
@@ -77,7 +77,7 @@ MIT. See [LICENSE](LICENSE).
 
 Dynamiczne, animowane tło widoku **Home Assistant Lovelace**, reagujące na aktualną pogodę, zachmurzenie i położenie Słońca.
 
-**Wersja źródłowa:** 1.0.1 · **Języki interfejsu:** angielski i polski · **Licencja:** MIT · **Zależności:** brak.
+**Wersja źródłowa:** 1.1.0 · **Języki interfejsu:** angielski i polski · **Licencja:** MIT · **Zależności:** brak.
 
 > Wersja 1.0.0 to punkt wyjścia projektu, odtworzony z działającego zasobu Lovelace Home Assistant.
 

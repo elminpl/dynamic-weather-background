@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.1.0 (2026-11-21)
+
 - Added English and Polish translations that follow the Home Assistant profile language. English is the fallback.
 - Added English versions of the Markdown documentation.
 
@@ -25,6 +27,8 @@ Earlier versions, including the internal 1.7.1, were development builds.
 # Historia zmian
 
 ## Niewydane
+
+## 1.1.0 (2026-11-21)
 
 - Dodano tłumaczenia angielskie i polskie wybierane według języka profilu Home Assistant. Językiem zapasowym jest angielski.
 - Dodano angielską wersję dokumentacji Markdown.

@@ -1,5 +1,5 @@
-/* Dynamic Weather Background v1.0.1 | MIT | No runtime dependencies. */
-export const VERSION = "1.0.1";
+/* Dynamic Weather Background v1.1.0 | MIT | No runtime dependencies. */
+export const VERSION = "1.1.0";
 export const CONDITIONS = ["sunny", "clear-night", "partlycloudy", "cloudy", "rainy", "pouring", "snowy", "snowy-rainy", "fog", "lightning", "lightning-rainy", "windy", "windy-variant", "hail", "exceptional"];
 const TRANSLATIONS = {
   "en": {
