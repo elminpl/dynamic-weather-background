@@ -30,6 +30,10 @@ Dynamic Weather Background 1.1.0 running on a demo dashboard with sample data.
 | --- | --- |
 | ![Partly cloudy day on the demo dashboard](docs/screenshots/day.png) | ![Rainy night on the demo dashboard](docs/screenshots/night.png) |
 
+### Settings editor
+
+![Card settings with animation, performance, and live diagnostics](docs/screenshots/settings.png)
+
 ## Install through Marketplace or HACS
 
 1. Open **Marketplace** (**HACS** on older installations) and choose **⋮ → Custom repositories**.
@@ -110,6 +114,10 @@ Dynamic Weather Background 1.1.0 na przykładowym pulpicie z danymi demonstracyj
 | Częściowe zachmurzenie w dzień | Deszczowa noc |
 | --- | --- |
 | ![Częściowe zachmurzenie w dzień na przykładowym pulpicie](docs/screenshots/day.png) | ![Deszczowa noc na przykładowym pulpicie](docs/screenshots/night.png) |
+
+### Edytor ustawień
+
+![Ustawienia karty z opcjami animacji, wydajności i diagnostyką na żywo](docs/screenshots/settings.png)
 
 ## Instalacja przez Marketplace / HACS
 
