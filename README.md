@@ -2,6 +2,9 @@
 
 Animated backgrounds for **Home Assistant Lovelace** views based on the current weather, cloud cover, and sun position.
 
+[![Latest release](https://img.shields.io/github/v/release/elminpl/dynamic-weather-background?label=latest%20release)](https://github.com/elminpl/dynamic-weather-background/releases/latest)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+
 **Source version:** 1.1.0 · **Interface languages:** English and Polish · **License:** MIT · **Dependencies:** none.
 
 [Przejdź do wersji polskiej](#dynamic-weather-background-1)
