@@ -12,10 +12,8 @@ args = parser.parse_args()
 
 root = Path(__file__).resolve().parent.parent
 module = root / "dist/dynamic-weather-background.js"
-readme = root / "README.md"
 changelog = root / "CHANGELOG.md"
 source = module.read_text(encoding="utf-8")
-readme_text = readme.read_text(encoding="utf-8")
 history = changelog.read_text(encoding="utf-8")
 version = re.search(r'^export const VERSION = "(\d+\.\d+\.\d+)";$', source, re.M)
 if not version:
@@ -39,8 +37,18 @@ def replace_once(text, old, new):
 
 source = replace_once(source, f'Dynamic Weather Background v{current} |', f'Dynamic Weather Background v{next_version} |')
 source = replace_once(source, version[0], f'export const VERSION = "{next_version}";')
-for label in ("Source version", "Wersja źródłowa"):
-    readme_text = replace_once(readme_text, f"**{label}:** {current}", f"**{label}:** {next_version}")
+version_labels = {
+    "README.md": ("Source version", "Wersja źródłowa"),
+    "docs/CONFIGURATION.md": ("Documented version", "Wersja opisana w dokumencie"),
+    "docs/MIGRATION.md": ("Documented version", "Wersja opisana w dokumencie"),
+}
+updates = {module: source}
+for name, labels in version_labels.items():
+    path = root / name
+    content = path.read_text(encoding="utf-8")
+    for label in labels:
+        content = replace_once(content, f"**{label}:** {current}", f"**{label}:** {next_version}")
+    updates[path] = content
 
 today = datetime.now(timezone.utc).date().isoformat()
 for heading in ("Unreleased", "Niewydane"):
@@ -50,7 +58,8 @@ for heading in ("Unreleased", "Niewydane"):
     section = f"## {heading}\n\n## {next_version} ({today})\n\n{pending[1].strip()}\n\n"
     history = history[:pending.start()] + section + history[pending.end():]
 
-for path, content in ((module, source), (readme, readme_text), (changelog, history)):
+updates[changelog] = history
+for path, content in updates.items():
     path.write_text(content, encoding="utf-8")
 
 print(next_version)

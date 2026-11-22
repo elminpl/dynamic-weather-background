@@ -1,5 +1,7 @@
 # Configuration — Dynamic Weather Background
 
+**Documented version:** 1.1.0
+
 The tables list the defaults. You can also use the visual card editor in Home Assistant.
 
 ## Data sources and behavior
@@ -69,6 +71,8 @@ Configuration normalization removes the obsolete `target_path`, `target_paths`, 
 ---
 
 # Konfiguracja — Dynamic Weather Background
+
+**Wersja opisana w dokumencie:** 1.1.0
 
 Poniżej opisano wartości domyślne. Kartę można skonfigurować również wizualnie w interfejsie Home Assistant.
 

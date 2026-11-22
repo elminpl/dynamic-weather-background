@@ -1,5 +1,7 @@
 # Migrating from an inline resource
 
+**Documented version:** 1.1.0
+
 The project originated from an inline Lovelace module.
 
 1. Back up the dashboard configuration and card settings. Save a copy of the original inline JavaScript.
@@ -16,6 +18,8 @@ Publishing files on GitHub leaves your existing Home Assistant installation unch
 ---
 
 # Migracja z modułu inline
+
+**Wersja opisana w dokumencie:** 1.1.0
 
 Projekt powstał na podstawie modułu inline w zasobach Lovelace.
 

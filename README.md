@@ -80,7 +80,7 @@ Use [GitHub Issues](https://github.com/elminpl/dynamic-weather-background/issues
 
 ## Releases
 
-Add English notes under **Unreleased** and Polish notes under **Niewydane** in the [changelog](CHANGELOG.md). Run the **Wydanie wtyczki** workflow from `main` after reviewing the changes. Choose `patch` for fixes, `minor` for backwards-compatible features, or `major` for breaking changes. The workflow updates the module and both README version labels, moves the changelog entries under the new version, and publishes a tag and release with the JavaScript file.
+Add English notes under **Unreleased** and Polish notes under **Niewydane** in the [changelog](CHANGELOG.md). Before each release, review all Markdown files in English and Polish. Update the feature and installation descriptions, configuration options and defaults, migration steps, and screenshots where the release changes them. Run the **Wydanie wtyczki** workflow from `main` after that review. Choose `patch` for fixes, `minor` for backwards-compatible features, or `major` for breaking changes. The workflow updates the module version and the version labels in both languages in the README, configuration reference, and migration guide, moves the changelog entries under the new version, and publishes a tag and release with the JavaScript file.
 
 ## License
 
@@ -165,7 +165,7 @@ Zgłoszenia błędów: [GitHub Issues](https://github.com/elminpl/dynamic-weathe
 
 ## Wydania
 
-Zmiany dopisujemy po angielsku w sekcji **Unreleased** i po polsku w sekcji **Niewydane** w [historii zmian](CHANGELOG.md). Wydanie przygotowujemy po zebraniu i sprawdzeniu zmian. Na GitHubie workflow **Wydanie wtyczki** uruchamia się ręcznie z gałęzi `main`. Wybierz `patch` dla poprawek, `minor` dla zgodnych wstecz nowych funkcji albo `major` dla zmian niezgodnych wstecz. Workflow zwiększa numer w module i obu częściach README, przenosi wpisy do nowej sekcji w changelogu oraz publikuje tag i wydanie z plikiem JavaScript.
+Zmiany dopisujemy po angielsku w sekcji **Unreleased** i po polsku w sekcji **Niewydane** w [historii zmian](CHANGELOG.md). Przed każdym wydaniem przejrzyj wszystkie pliki Markdown po angielsku i po polsku. Zaktualizuj opis funkcji i instalacji, opcje i wartości domyślne, kroki migracji oraz zrzuty ekranu, jeśli wydanie ich dotyczy. Na GitHubie workflow **Wydanie wtyczki** uruchamia się ręcznie z gałęzi `main`. Wybierz `patch` dla poprawek, `minor` dla zgodnych wstecz nowych funkcji albo `major` dla zmian niezgodnych wstecz. Workflow aktualizuje numer wersji w module oraz w obu wersjach językowych README, opisu konfiguracji i instrukcji migracji, przenosi wpisy do nowej sekcji w changelogu oraz publikuje tag i wydanie z plikiem JavaScript.
 
 ## Licencja
 
