@@ -113,11 +113,11 @@ Dynamic Weather Background 1.1.0 na przykładowym pulpicie z danymi demonstracyj
 
 | Częściowe zachmurzenie w dzień | Deszczowa noc |
 | --- | --- |
-| ![Częściowe zachmurzenie w dzień na przykładowym pulpicie](docs/screenshots/day.png) | ![Deszczowa noc na przykładowym pulpicie](docs/screenshots/night.png) |
+| ![Częściowe zachmurzenie w dzień na przykładowym pulpicie](docs/screenshots/day-pl.png) | ![Deszczowa noc na przykładowym pulpicie](docs/screenshots/night-pl.png) |
 
 ### Edytor ustawień
 
-![Ustawienia karty z opcjami animacji, wydajności i diagnostyką na żywo](docs/screenshots/settings.png)
+![Ustawienia karty z opcjami animacji, wydajności i diagnostyką na żywo](docs/screenshots/settings-pl.png)
 
 ## Instalacja przez Marketplace / HACS
 
