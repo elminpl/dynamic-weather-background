@@ -46,7 +46,7 @@ Use one instance per view. If an inline version is already installed, follow the
 
 ### Manual installation
 
-Download `dynamic-weather-background.js` from **Assets** in the [latest release](https://github.com/elminpl/dynamic-weather-background/releases/latest) and copy it to `/config/www/dynamic-weather-background.js`. Add `/local/dynamic-weather-background.js` to your dashboard resources as a JavaScript module and reload the page. Marketplace and HACS register their own resource.
+Download `dynamic-weather-background.js` from **Assets** in the [latest release](https://github.com/elminpl/dynamic-weather-background/releases/latest) and copy it to `/config/www/dynamic-weather-background.js`. Add `/local/dynamic-weather-background.js` to your dashboard resources as a JavaScript module and reload the page. If you installed through Marketplace or HACS, use the resource it registers. For a manual update, replace the JavaScript file and change the version query string in the resource URL (for example, `/local/dynamic-weather-background.js?v=1.1.0`) to refresh cached copies.
 
 ### Minimal card
 
@@ -80,7 +80,7 @@ Use [GitHub Issues](https://github.com/elminpl/dynamic-weather-background/issues
 
 ## Releases
 
-Add changes to **Unreleased** in both languages in the [changelog](CHANGELOG.md). Run the **Wydanie wtyczki** workflow from `main` after reviewing the changes. Choose `patch` for fixes, `minor` for backwards-compatible features, or `major` for breaking changes. The workflow updates the module and both README version labels, moves the changelog entries under the new version, and publishes a tag and release with the JavaScript file.
+Add English notes under **Unreleased** and Polish notes under **Niewydane** in the [changelog](CHANGELOG.md). Run the **Wydanie wtyczki** workflow from `main` after reviewing the changes. Choose `patch` for fixes, `minor` for backwards-compatible features, or `major` for breaking changes. The workflow updates the module and both README version labels, moves the changelog entries under the new version, and publishes a tag and release with the JavaScript file.
 
 ## License
 
@@ -98,7 +98,7 @@ Dynamiczne, animowane tło widoku **Home Assistant Lovelace**, reagujące na akt
 
 ## Możliwości
 
-- Tło przypisane do konkretnego widoku, w którym umieszczono kartę; bez globalnego wpływu na wszystkie pulpity.
+- Tło działa w widoku, w którym umieszczono kartę.
 - Sceny dnia, nocy, świtu i zmierzchu na podstawie `sun.sun`.
 - Reakcja na encję `weather.*`: chmury, deszcz, śnieg, grad, mgła i burze. Stany `windy` i `windy-variant` wpływają na domyślne zachmurzenie.
 - Dwuwarstwowe animowane chmury i regulacja ich szybkości oraz widoczności.
@@ -124,14 +124,14 @@ Dynamic Weather Background 1.1.0 na przykładowym pulpicie z danymi demonstracyj
 1. Otwórz **Marketplace** (w starszych instalacjach **HACS**) i wybierz **⋮ → Własne repozytoria** (*Custom repositories*).
 2. Wklej `https://github.com/elminpl/dynamic-weather-background`, wybierz kategorię **Dashboard** (w starszym HACS **Lovelace** lub **Plugin**) i dodaj repozytorium.
 3. Otwórz **Dynamic Weather Background** w katalogu i pobierz wtyczkę. W razie potrzeby przeładuj stronę przeglądarki.
-4. Dodaj nową kartę do wybranego widoku i wybierz **Dynamic Weather Background**, lub użyj edytora YAML.
+4. Dodaj nową kartę do wybranego widoku i wybierz **Dynamic Weather Background** lub użyj edytora YAML.
 5. Wskaż istniejącą encję `weather.*` i `sun.sun`.
 
 Nie dodawaj jednocześnie dwóch instancji tej karty w tym samym widoku. Jeżeli w HA masz już starszy zasób inline, zapoznaj się z [instrukcją migracji](docs/MIGRATION.md) **przed** instalacją kolejnej kopii.
 
 ### Ręczna instalacja
 
-Pobierz `dynamic-weather-background.js` z sekcji **Assets** w [najnowszym wydaniu](https://github.com/elminpl/dynamic-weather-background/releases/latest) i skopiuj go do `/config/www/dynamic-weather-background.js`. W zasobach dashboardu dodaj moduł JavaScript o URL `/local/dynamic-weather-background.js` i odśwież stronę. **Nie dodawaj podwójnego wpisu zasobu**, jeżeli instalację obsługuje HACS/Marketplace.
+Pobierz `dynamic-weather-background.js` z sekcji **Assets** w [najnowszym wydaniu](https://github.com/elminpl/dynamic-weather-background/releases/latest) i skopiuj go do `/config/www/dynamic-weather-background.js`. W zasobach dashboardu dodaj moduł JavaScript o URL `/local/dynamic-weather-background.js` i odśwież stronę. Przy instalacji przez Marketplace lub HACS skorzystaj z zasobu zarejestrowanego przez ten katalog. Przy ręcznej aktualizacji zastąp plik JavaScript i zmień parametr wersji w adresie zasobu (np. `/local/dynamic-weather-background.js?v=1.1.0`), aby przeglądarka wczytała nową kopię.
 
 ### Minimalna karta
 

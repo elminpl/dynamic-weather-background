@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added release and license badges and localized screenshots of the demo dashboard and settings editor.
+- Updated manual installation, migration, and configuration documentation.
+
 ## 1.1.0 (2026-11-21)
 
 - Added English and Polish translations that follow the Home Assistant profile language. English is the fallback.
@@ -28,12 +31,13 @@ Earlier versions, including the internal 1.7.1, were development builds.
 
 ## Niewydane
 
+- Dodano odznaki wydania i licencji oraz zrzuty przykładowego pulpitu i edytora w obu językach.
+- Zaktualizowano instrukcje ręcznej instalacji, migracji i konfiguracji.
+
 ## 1.1.0 (2026-11-21)
 
 - Dodano tłumaczenia angielskie i polskie wybierane według języka profilu Home Assistant. Językiem zapasowym jest angielski.
 - Dodano angielską wersję dokumentacji Markdown.
-
-## Niewydane
 
 ## 1.0.1 (2026-11-20)
 

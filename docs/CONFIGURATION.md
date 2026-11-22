@@ -6,7 +6,7 @@ The tables list the defaults. You can also use the visual card editor in Home As
 
 | Parameter | Default | Description |
 |---|---|---|
-| `entity` | `weather.forecast_dom` | A `weather.*` entity available in your installation |
+| `entity` | `weather.forecast_dom` | Set this to a `weather.*` entity in your installation |
 | `sun_entity` | `sun.sun` | Sun entity |
 | `hide_card` | `true` | Hide the card outside edit mode |
 
@@ -29,7 +29,7 @@ The tables list the defaults. You can also use the visual card editor in Home As
 | `lightning_strength` | `65` | 0–100% |
 | `lightning_interval` | `14` | 6–60 s |
 
-`cloud_speed` and `cloud_speed_secondary` control how long the layers take to move across the view. Lower numbers make clouds move faster.
+`cloud_speed` and `cloud_speed_secondary` set the movement timing for the first and second cloud layers. Lower numbers make clouds move faster.
 
 ## Card appearance
 
@@ -44,7 +44,7 @@ The tables list the defaults. You can also use the visual card editor in Home As
 | `card_border` | `true` | `true/false` |
 | `card_shadow` | `35` | 0–100% |
 
-`card_effect: none` preserves the standard card appearance, including transparency and shadows.
+With `card_effect: none`, the card keeps the dashboard’s standard appearance. Custom transparency, borders, and shadows are inactive. The `glass_blur` setting accepts 0–24 px, with an 8 px rendering cap on mobile.
 
 ## Animation, quality, and preview
 
@@ -76,7 +76,7 @@ Poniżej opisano wartości domyślne. Kartę można skonfigurować również wiz
 
 | Parametr | Domyślnie | Opis |
 |---|---|---|
-| `entity` | `weather.forecast_dom` | Encja pogody `weather.*`; ustaw na encję dostępną w swojej instalacji |
+| `entity` | `weather.forecast_dom` | Wskaż encję `weather.*` dostępną w Twojej instalacji |
 | `sun_entity` | `sun.sun` | Encja Słońca |
 | `hide_card` | `true` | Ukryj panel karty poza edytorem |
 
@@ -99,7 +99,7 @@ Poniżej opisano wartości domyślne. Kartę można skonfigurować również wiz
 | `lightning_strength` | `65` | 0–100% |
 | `lightning_interval` | `14` | 6–60 s |
 
-`cloud_speed` i `cloud_speed_secondary` to czasy przesunięcia warstw, a nie mnożniki prędkości: niższa liczba oznacza szybsze przesuwanie.
+`cloud_speed` i `cloud_speed_secondary` określają czas ruchu pierwszej i drugiej warstwy chmur. Niższa wartość przyspiesza przesuwanie.
 
 ## Wygląd kart
 
@@ -114,7 +114,7 @@ Poniżej opisano wartości domyślne. Kartę można skonfigurować również wiz
 | `card_border` | `true` | `true/false` |
 | `card_shadow` | `35` | 0–100% |
 
-**Uwaga:** `card_effect: none` wymusza standardowy wygląd kart, bez modyfikacji przezroczystości i cieni, niezależnie od pozostałych parametrów.
+Przy `card_effect: none` karty zachowują standardowy wygląd pulpitu. Własna przezroczystość, obramowanie i cienie są wyłączone. Ustawienie `glass_blur` przyjmuje 0–24 px, a na urządzeniach mobilnych rozmycie jest ograniczone do 8 px.
 
 ## Animacja, jakość i podgląd
 
@@ -134,4 +134,4 @@ Do zwykłej pracy użyj `preview_weather: off` i `preview_time: auto`. Edytor ud
 
 W edytorze karty rozwiń **Diagnostyka na żywo**. Wyświetlane są m.in. źródło danych, pogoda, scena, pora dnia, zachmurzenie i położenie Słońca.
 
-Nie używaj przestarzałych pól `target_path`, `target_paths` ani `glass_tint`: v1.0.0 usuwa je podczas normalizacji konfiguracji. Wtyczka działa na widok, w którym jest umieszczona.
+Podczas normalizacji konfiguracji wtyczka usuwa przestarzałe pola `target_path`, `target_paths` i `glass_tint`. Karta działa w widoku, w którym ją umieszczono.
