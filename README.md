@@ -22,6 +22,14 @@ Animated backgrounds for **Home Assistant Lovelace** views based on the current 
 - Visual editor, temporary weather preview, and live diagnostics.
 - The controller card is hidden outside edit mode by default (`hide_card: true`).
 
+## Screenshots
+
+Dynamic Weather Background 1.1.0 running on a demo dashboard with sample data.
+
+| Partly cloudy day | Rainy night |
+| --- | --- |
+| ![Partly cloudy day on the demo dashboard](docs/screenshots/day.png) | ![Rainy night on the demo dashboard](docs/screenshots/night.png) |
+
 ## Install through Marketplace or HACS
 
 1. Open **Marketplace** (**HACS** on older installations) and choose **⋮ → Custom repositories**.
@@ -94,6 +102,14 @@ Dynamiczne, animowane tło widoku **Home Assistant Lovelace**, reagujące na akt
 - Ustawienia jakości (**high / balanced / battery**) i animacji (**auto / reduced / off**).
 - Interaktywny edytor wizualny, symulacja pogody i panel diagnostyczny.
 - Domyślnie ukryta karta sterująca (`hide_card: true`), widoczna podczas edycji.
+
+## Zrzuty ekranu
+
+Dynamic Weather Background 1.1.0 na przykładowym pulpicie z danymi demonstracyjnymi.
+
+| Częściowe zachmurzenie w dzień | Deszczowa noc |
+| --- | --- |
+| ![Częściowe zachmurzenie w dzień na przykładowym pulpicie](docs/screenshots/day.png) | ![Deszczowa noc na przykładowym pulpicie](docs/screenshots/night.png) |
 
 ## Instalacja przez Marketplace / HACS
 
